@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CombiAI User Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#ff6e61",
+            "background-light": "#f8f6f5",
+            "background-dark": "#23100f",
+          },
+          fontFamily: {
+            "display": ["Inter", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings:
+      'FILL' 1,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="flex flex-col flex-1">
+<!-- TopAppBar -->
+<header class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10">
+<div class="flex size-12 shrink-0 items-center text-gray-800 dark:text-gray-200">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center text-gray-900 dark:text-gray-100">My Profile</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-transparent text-gray-800 dark:text-gray-200 gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0">
+<span class="material-symbols-outlined text-2xl">settings</span>
+</button>
+</div>
+</header>
+<!-- ProfileHeader -->
+<div class="flex p-4 @container">
+<div class="flex w-full flex-col gap-4 items-center">
+<div class="flex gap-4 flex-col items-center">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-32 w-32" data-alt="User avatar with a soft gradient background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDOr-i2U5uSDUhHv87Q1nAOxT0HQaUcbsOZsptX-vjFvrDGrk3rzvrw-VF0vFFqrmUf0y-jH8v6R3rS4S2rIsR47t0qcwBhrlLDdBiP5CrubCkxHRJKr3Q5t78gXjsvtcke8mNJAgppsr23dbCUzsZUwkrlWodaQbIcxKe8v0K8s8w9gH6OAfrBUjKj0VJ4quQ3EUzkF2JNEIKJzukmhTnRlaz-dO8tvECc2GpbQSVZg7Hsddly94NUe3ZZfxOZ-Cc7e1fZx3HeMz8q');"></div>
+<div class="flex flex-col items-center justify-center">
+<p class="text-gray-900 dark:text-gray-100 text-[22px] font-bold leading-tight tracking-[-0.015em] text-center">@stylemaven</p>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="material-symbols-outlined text-lg text-yellow-400 fill">star</span>
+<p class="text-gray-500 dark:text-gray-400 text-base font-normal leading-normal text-center">Total Style Score: 8,450</p>
+</div>
+</div>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-gray-200/50 dark:bg-white/10 text-gray-800 dark:text-gray-200 text-sm font-bold leading-normal tracking-[0.015em] w-full max-w-[480px] @[480px]:w-auto">
+<span class="truncate">Edit Profile</span>
+</button>
+</div>
+</div>
+<!-- Tabs -->
+<div class="pb-3 sticky top-[68px] z-10 bg-background-light dark:bg-background-dark">
+<div class="flex border-b border-gray-200/80 dark:border-white/10 px-4 justify-between">
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-primary text-gray-900 dark:text-gray-100 pb-[13px] pt-4 flex-1" href="#">
+<p class="text-sm font-bold leading-normal tracking-[0.015em]">AI Combos</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-gray-500 dark:text-gray-400 pb-[13px] pt-4 flex-1" href="#">
+<p class="text-sm font-bold leading-normal tracking-[0.015em]">My Outfits</p>
+</a>
+</div>
+</div>
+<!-- ImageGrid -->
+<div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-4 p-4">
+<div class="flex flex-col gap-3 pb-3">
+<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-xl" data-alt="A stylish woman in a casual chic outfit with a white blouse and blue jeans." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuByIXWTAbHBnuNRCMxUnni6plVtqa8AK2dgLwumBb2k9O7vdIsDrRG2Tkb_0WJ5-CS-Z9k-sTcXn4aZr-RvloyFbFepW4XcYz_AjqwAC5oeXXo1vWU60dKBAMxk2htugFhPYCBxu-U9hEzIOUItplFT4z1dh4xV3jqW1eTADtDZqw_1P6G3QlXDEVWoRgehMyaU_ylDemH8oiK776eUa2wVtltCJBmp5pv_VTRjMxlQ6zPjkk8YpEJxJ44ilV7cz52hHfPhPpOn88Qv");'></div>
+<div class="px-1">
+<div class="flex justify-between items-center">
+<p class="text-gray-900 dark:text-gray-100 text-base font-medium leading-normal">Casual Chic</p>
+<div class="flex items-center gap-1 text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined text-base">favorite_border</span>
+<span class="text-xs font-medium">1.2k</span>
+</div>
+</div>
+<div class="flex items-center gap-0.5 mt-1 text-yellow-400">
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm">star_half</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-3 pb-3">
+<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-xl" data-alt="A person wearing a comfortable and trendy outfit perfect for the weekend." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCz56g8PGkENbg94e7sxImuKFdfIYEEZTnUYMGjxLUgv_SQZn8PDgts877rRCljQrauabzlYOydVn3bHoz66srMuB2j1WF4vCkkB2EvViEgWWWrIEJ6BoPKbiDGcEFKJUeD-vuAy0EZfroNPJd2Gv192lZnBQE5GHU16taG-fa1VdBmXr4TI1YtX-ZrdkuPfrwvfJucu4KPOsBIIqvGZuflMpB86PIyvFsSZruSg0h6dVrf_BshLX62Hwg6h0r53fR4RIJl0I38mErl");'></div>
+<div class="px-1">
+<div class="flex justify-between items-center">
+<p class="text-gray-900 dark:text-gray-100 text-base font-medium leading-normal">Weekend Vibes</p>
+<div class="flex items-center gap-1 text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined text-base text-primary fill">favorite</span>
+<span class="text-xs font-medium text-primary">890</span>
+</div>
+</div>
+<div class="flex items-center gap-0.5 mt-1 text-yellow-400">
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm text-gray-300 dark:text-gray-600">star</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-3 pb-3">
+<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-xl" data-alt="A professional and elegant office look with a blazer and trousers." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDHzE1HtG0Z5S0ilpWJwZ7_IMLnfjWk6OZuAq8-C2dp0VU8acYtqa3AqBf_eeKGKJfqT7WuBO0Irlu_MNNhXqB6mZlxFsRabtcaH-0CNb86vNjhyqpByhhLQBcuCEb2CzY4huBtdcJl7gPGHju0w7XFiqusQ03366uQc2i2JFUhAViufro6GaqvDQyyPv32BTMQoMOL89pn32QoElmxKPN-3zG4gJ_AZTEYbUtJtgV-ODhiztxdqaiaeXbqLrHQsR1QjXcGMw5ob_jx");'></div>
+<div class="px-1">
+<div class="flex justify-between items-center">
+<p class="text-gray-900 dark:text-gray-100 text-base font-medium leading-normal">Office Look</p>
+<div class="flex items-center gap-1 text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined text-base">favorite_border</span>
+<span class="text-xs font-medium">2.3k</span>
+</div>
+</div>
+<div class="flex items-center gap-0.5 mt-1 text-yellow-400">
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm fill">star</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-3 pb-3">
+<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-xl" data-alt="A glamorous and eye-catching outfit for a night out." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAVJjqg_FukEqVNdKlOu0qnnBWSphzQy0NY__jOMFqNf46NhoWHlfq3e_IR_lbB4znuc2obVY-m74Si6IE8k8UUPv-exjAHGKDQeXwarvoT4rLHpsNwRU697QDbHr8ZRgNRTBjtM92dcN8Kd4XDJJxEgrcuAPfgI76f_X85yeh16XZ29uM79omg9bpXsLNAZXHSbo-pUOqChQV1Tmwo7B_TJpKMGQeE7nZirFlJNgm4vBbPqCG9vqEbaWMuyKt-O31u1c0NaA6t8sOv");'></div>
+<div class="px-1">
+<div class="flex justify-between items-center">
+<p class="text-gray-900 dark:text-gray-100 text-base font-medium leading-normal">Night Out</p>
+<div class="flex items-center gap-1 text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined text-base">favorite_border</span>
+<span class="text-xs font-medium">950</span>
+</div>
+</div>
+<div class="flex items-center gap-0.5 mt-1 text-yellow-400">
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm fill">star</span>
+<span class="material-symbols-outlined text-sm">star_half</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- BottomNavBar -->
+<footer class="flex gap-2 border-t border-gray-200/80 dark:border-white/10 bg-background-light dark:bg-background-dark px-4 pb-3 pt-2 sticky bottom-0 z-10">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-gray-500 dark:text-gray-400" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">home</span>
+</div>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-gray-500 dark:text-gray-400" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">search</span>
+</div>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Explore</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-gray-500 dark:text-gray-400" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-primary">add_circle</span>
+</div>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-gray-500 dark:text-gray-400" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">checkroom</span>
+</div>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Closet</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-gray-900 dark:text-gray-100" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined fill">person</span>
+</div>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Profile</p>
+</a>
+</footer>
+</div>
+</body></html>

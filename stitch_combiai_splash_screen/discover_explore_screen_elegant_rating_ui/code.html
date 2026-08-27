@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CombiAI Discover Feed</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#7e47eb",
+            "background-light": "#f8f8f8",
+            "background-dark": "#161121",
+          },
+          fontFamily: {
+            "display": ["Plus Jakarta Sans", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.5rem",
+            "lg": "1rem",
+            "xl": "1.5rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+    }
+    body {
+      min-height: max(884px, 100dvh);
+    }
+    input[type="range"].rating-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      background: #e9e9e9;
+      border-radius: 9999px;
+      outline: none;
+      padding: 0;
+    }
+    input[type="range"].rating-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(135deg, #a77df1, #7e47eb);
+      cursor: pointer;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(126, 71, 235, 0.4);
+    }
+    input[type="range"].rating-slider::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(135deg, #a77df1, #7e47eb);
+      cursor: pointer;
+      border-radius: 50%;
+      border: none;
+      box-shadow: 0 2px 4px rgba(126, 71, 235, 0.4);
+    }
+    .rating-popup-wrapper {
+      position: relative;
+    }
+    .rating-popup {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+      transform: translateY(10px);
+    }
+    .rating-popup-wrapper > button:focus + .rating-popup {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative mx-auto flex h-auto min-h-screen w-full max-w-md flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden">
+<div class="sticky top-0 z-20 flex items-center justify-between bg-background-light/80 dark:bg-background-dark/80 p-4 pb-3 backdrop-blur-sm">
+<h1 class="text-[#333333] dark:text-white text-2xl font-bold leading-tight tracking-[-0.015em]">Discover</h1>
+<div class="flex items-center justify-end">
+<button class="flex h-8 items-center justify-center rounded-full border border-primary/20 bg-primary/5 hover:bg-primary/10 px-4 text-xs font-bold uppercase tracking-wide text-primary transition-colors">
+<span class="material-symbols-outlined text-2xl">search</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-8 px-4 py-4">
+<div class="flex flex-col gap-4 rounded-xl bg-white dark:bg-zinc-800 p-4 shadow-sm relative">
+<div class="flex items-center gap-3">
+<img class="h-10 w-10 rounded-full object-cover" data-alt="User avatar for SarahStyle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHILekwCSdzvxYCTfY1VivNMwjrb2MfSksdcjsnHLoajVcpUjjRm3fURW04QPa0FP57m7Eui-qIPMWzULmIrv4J6AhvzaRVmjejn8poA77NpqiWdWKpKyKzDmAiwCPKrW-gNv5flvirKkIjAtBx0In9F380wox_k5ms9y1hC6Sc5aZISvAToBmynI2Dw-ZZI0BXmz1LyGrpGYh5_c1uc8TyXtf9mVTjmSF91FUbVKqd3jlUhwbmoxPyP9JGf5fiBorvF2Y4zX-bb4b"/>
+<p class="flex-1 text-sm font-bold text-[#333333] dark:text-gray-200">SarahStyle</p>
+<button class="text-[#333333] dark:text-gray-400">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="relative w-full">
+<div class="aspect-[3/4] w-full rounded-lg bg-cover bg-center bg-no-repeat" data-alt="Woman wearing a vibrant yellow dress in a sunny street." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAmbdStployVLhO8m9VlS-INQAKo95B2qk46we84f0-u3Nvfq74UaNvSay52YWgf15UefKPFPo7c3Bi7_CxvIz0oBoMqGZn5kzSvrJ_uPi577Y2OdEeWPojf5Bc57hCBAtSD6hinpma-KJfVbxBI-Mp9UGJyj3Mc9cGIcUqe-x6ukcwkoSdokPPAZuXpE9e9Rq2O9eyXPWIcc-rceH5T7zzBVMdssc8JdPvcgvk2PB5HpefALc-3vUSrvH_9VvkNejvku_KgnjkmXaw");'></div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex flex-1 items-center justify-start gap-4">
+<button class="flex items-center justify-center gap-1.5 text-[#333333] dark:text-gray-300">
+<span class="material-symbols-outlined text-red-500" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+<button class="flex items-center justify-center gap-1.5 text-[#333333] dark:text-gray-300">
+<span class="material-symbols-outlined">chat_bubble_outline</span>
+</button>
+<button class="flex items-center justify-center gap-1.5 text-[#333333] dark:text-gray-300">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<div class="rating-popup-wrapper">
+<button class="flex h-8 items-center justify-center rounded-full border border-primary/20 bg-primary/5 hover:bg-primary/10 px-4 text-xs font-bold uppercase tracking-wide text-primary transition-colors">
+                Rating
+              </button>
+<div class="rating-popup absolute bottom-full left-1/2 z-10 mb-2 w-48 -translate-x-1/2"><div class="flex flex-col gap-3 rounded-xl bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md p-4 shadow-xl ring-1 ring-black/5 dark:ring-white/10 border border-white/20"><div class="flex justify-between items-center"><span class="text-xs font-bold text-primary uppercase tracking-wider">Rate Look</span><span class="text-sm font-bold text-[#333333] dark:text-white bg-primary/10 px-2 py-0.5 rounded-full">8.0</span></div><div class="relative py-2"><input class="rating-slider w-full h-1.5 bg-gray-200 dark:bg-zinc-700 rounded-full appearance-none cursor-pointer" max="10" min="1" step="0.1" type="range" value="8"/><div class="flex justify-between mt-2 text-[10px] font-medium text-gray-400"><span>1.0</span><span>10.0</span></div></div></div></div>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-yellow-500" style="font-variation-settings: 'FILL' 1; font-size: 20px;">star</span>
+<span class="text-sm font-bold text-[#333333] dark:text-gray-200">7.9</span>
+</div>
+</div>
+</div>
+<div class="pt-2">
+<p class="text-sm font-bold text-[#333333] dark:text-gray-200">1,482 likes</p>
+<p class="mt-1 text-sm text-[#333333] dark:text-gray-300">
+<span class="font-bold">SarahStyle</span> Absolutely adore this sunny day look from CombiAI! ☀️ #OOTD #AIFashion
+          </p>
+</div>
+<div class="flex flex-col gap-3 pt-3 border-t border-gray-100 dark:border-zinc-700 mt-2">
+<p class="text-sm font-medium text-gray-600 dark:text-gray-400 cursor-pointer">View all 42 comments</p>
+<div class="flex flex-col gap-2">
+<p class="text-sm text-[#333333] dark:text-gray-300">
+<span class="font-bold">StyleSavvy</span> Love the colors! So vibrant.
+            </p>
+<p class="text-sm text-[#333333] dark:text-gray-300">
+<span class="font-bold">Fashionista_Jane</span> That dress is a dream! 💛
+            </p>
+</div>
+<div class="flex items-center gap-3">
+<img class="h-8 w-8 rounded-full object-cover" data-alt="Current user avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYkpUbKFUCD-CYhQiYQnWbiI-6NUNI67Loa3hFbIh7kHDPKvJVxyxRFPnR2TR-7Rpd7Ou1YZxpqYZk5Fz9NbiZmzSHymEhIU9xoaX-4oJV8DnuXog8Cn12Y8m8lVQd2vFvv1UH60opTe9viJOJg51k6x98-iCZMo1IgLz8Ho-OsnYHQymw3zwk0ypuEkK1Icrtm96TYujQckWP1obHcY7EINKPjfyuyH0Rk28_zxp63oIQ69kvOL3qUH9rHndGNdW9dD9cdCfqFFRl"/>
+<input class="flex-1 rounded-full border-gray-200 bg-gray-100 dark:border-zinc-700 dark:bg-zinc-700 px-4 py-2 text-sm placeholder-gray-500 dark:placeholder-gray-400 focus:border-primary focus:ring-primary" placeholder="Add a comment..." type="text"/>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-4 rounded-xl bg-white dark:bg-zinc-800 p-4 shadow-sm">
+<div class="flex items-center gap-3">
+<img class="h-10 w-10 rounded-full object-cover" data-alt="User avatar for Alex_M" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBziBlDK9Eh-63Oq6ZS17xXDuJadIIJFM42QLBmlx2E2VsAH1b8z8OEntBBPE7NHHaY2jnnh_wDWinEz70pWiACRMiPt3B7NYmj6COLcu2TUUVsfv8L03CTQp2cs2zwGoy0PwYjrWrNMGTR9nNqYt15D-sk8_piSrGDs-a631RLot1jvKAwp0UyKq9Cxs6OZaEPfBy5n4JRLmz_2UbaTyDpB_g8cO6086_U0dI99woRUQVyiPadgSNY5W5dUeMMliGfulpf2xicRrTW"/>
+<p class="flex-1 text-sm font-bold text-[#333333] dark:text-gray-200">Alex_M</p>
+<button class="text-[#333333] dark:text-gray-400">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="relative w-full">
+<div class="aspect-[3/4] w-full rounded-lg bg-cover bg-center bg-no-repeat" data-alt="Woman showing off stylish high heels and a handbag." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuACSqrm3tDmWVAr2UfRu-AirXsynM_OtbDEaX935AHp2bSn4phsbgE3yiZgn6kR_0CF7rsGkSqDeefmrbOiU-etgKhqFcmy6FYNe_nQEhE6jdd02BPXoYj9SliO5PZAlJ_YPoTcYuKQ1pRoJriIrCumRTSE0iNEPb6tgwU1reohpN-hLeAf9VlQtN-QI9l6aRP__waGt_DdYXmfG0h124jmessIlPVBwrws7OqGqCuD1PqiYjZs4BowOItID84aBaweCFtylAC8up9E");'></div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex flex-1 items-center justify-start gap-4">
+<button class="flex items-center justify-center gap-1.5 text-[#333333] dark:text-gray-300">
+<span class="material-symbols-outlined">favorite_border</span>
+</button>
+<button class="flex items-center justify-center gap-1.5 text-[#333333] dark:text-gray-300">
+<span class="material-symbols-outlined">chat_bubble_outline</span>
+</button>
+<button class="flex items-center justify-center gap-1.5 text-[#333333] dark:text-gray-300">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<div class="rating-popup-wrapper">
+<button class="flex h-8 items-center justify-center rounded-full border border-gray-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 text-sm font-semibold text-[#333333] dark:text-gray-200">
+                Rating
+              </button>
+<div class="rating-popup absolute bottom-full left-1/2 z-10 mb-2 w-48 -translate-x-1/2"><div class="flex flex-col gap-3 rounded-xl bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md p-4 shadow-xl ring-1 ring-black/5 dark:ring-white/10 border border-white/20"><div class="flex justify-between items-center"><span class="text-xs font-bold text-primary uppercase tracking-wider">Rate Look</span><span class="text-sm font-bold text-[#333333] dark:text-white bg-primary/10 px-2 py-0.5 rounded-full">9.5</span></div><div class="relative py-2"><input class="rating-slider w-full h-1.5 bg-gray-200 dark:bg-zinc-700 rounded-full appearance-none cursor-pointer" max="10" min="1" step="0.1" type="range" value="9.5"/><div class="flex justify-between mt-2 text-[10px] font-medium text-gray-400"><span>1.0</span><span>10.0</span></div></div></div></div>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-yellow-500" style="font-variation-settings: 'FILL' 1; font-size: 20px;">star</span>
+<span class="text-sm font-bold text-[#333333] dark:text-gray-200">9.2</span>
+</div>
+</div>
+</div>
+<div class="pt-2">
+<p class="text-sm font-bold text-[#333333] dark:text-gray-200">2,105 likes</p>
+<p class="mt-1 text-sm text-[#333333] dark:text-gray-300">
+<span class="font-bold">Alex_M</span> Night out vibes. The AI nailed this one for me!
+          </p>
+</div>
+<div class="flex flex-col gap-3 pt-3 border-t border-gray-100 dark:border-zinc-700 mt-2">
+<p class="text-sm font-medium text-gray-600 dark:text-gray-400 cursor-pointer">View all 117 comments</p>
+<div class="flex items-center gap-3">
+<img class="h-8 w-8 rounded-full object-cover" data-alt="Current user avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEU7WNF7oFa7IFgfCGiz9B0WWwweLjTIZkzpSEZ-9IlnUORtwvvEcdBpOEzSGhPvXR1sL7vgLcLGEyfBajoL_bvfOpwieCYkzwQF4M348Uck4Ip5xITu4EfHtGZs91xpjXaiulEpEGwmAdfxD-Q24j2YeJMNIz9qgaZIIK4Qtc5TkCjW-ZCUYuwm7Jvr_jdUq4QUVwd1klJKexktuTqn0VlESWyyFl6_8wlpQEBcejJepx3uk2ydMc8iwJ2fwoIMjxdPfx6Y_6oYJL"/>
+<input class="flex-1 rounded-full border-gray-200 bg-gray-100 dark:border-zinc-700 dark:bg-zinc-700 px-4 py-2 text-sm placeholder-gray-500 dark:placeholder-gray-400 focus:border-primary focus:ring-primary" placeholder="Add a comment..." type="text"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CombiAI - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+<style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#ff6e61",
+              "background-light": "#f8f6f5",
+              "background-dark": "#23100f",
+            },
+            fontFamily: {
+              "display": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#FFDAB9]">
+<div class="relative flex h-auto min-h-screen w-full flex-col font-display bg-gradient-to-b from-[#FFDAB9] to-[#E6E6FA] group/design-root overflow-x-hidden">
+<div class="flex flex-col items-center justify-center grow w-full p-4">
+<div class="flex flex-col items-center justify-center w-full max-w-sm text-center">
+<!-- Logo Component -->
+<div class="flex items-center justify-center pb-2 pt-16">
+<svg class="h-10 w-10 text-[#333333]" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M2 17L12 22L22 17" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M2 12L12 17L22 12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<h1 class="text-3xl font-bold text-[#333333] ml-2 tracking-tight">Fotpu</h1>
+</div>
+<!-- HeadlineText Component -->
+<h3 class="text-[#333333] tracking-light text-2xl font-bold leading-tight px-4 text-center pb-12 pt-1">Your Personal AI Stylist</h3>
+<!-- ButtonGroup Component (Social Logins) -->
+<div class="flex w-full">
+<div class="flex flex-1 gap-3 max-w-[480px] flex-col items-stretch px-4 py-3">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 px-5 bg-[#F8F8FF] text-[#333333] text-base font-bold leading-normal tracking-[0.015em] w-full shadow-md shadow-gray-400/20">
+<img class="h-6 w-6 mr-3" data-alt="Google logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG-9ab0NWF4pcPQoALiZ1MPNBG7WzWTkBRsh2dPtqARCywsTMdl3rlpoz93x9I-2E4WStTPpQ9bunPZ_ZVssITqcMZot2TW7vWQ_7WfdPXonjfcMMacITflLquQtcBK4o56H9JCH3ByhOpG9YpnqahB2K1H4I-rhnXWsQMv2ni4bGpqPB7BCfWi4X1170F95vDOjiOQsjLSAwYcR8udzi2iCKTHY0uqXH5zAQtFmsCBj4gRn6QE4hqNL8V6o0_okgKvmYPylVJlerK">
+<span class="truncate">Continue with Google</span>
+</button>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 px-5 bg-[#F8F8FF] text-[#333333] text-base font-bold leading-normal tracking-[0.015em] w-full shadow-md shadow-gray-400/20">
+<img class="h-6 w-6 mr-3" data-alt="Apple logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUh8ASzOVBc5TAtjMPzjZsZwB7ldN6DtjqrmdjCaxCi0CV3HvawQkNwOHMMROp1UD12FTyI6KRxni4TKxGxqShJKUkBqMylffXAvYKGh8HyqTV1xLd8m38jsCmr02kSw_vlk8XEN68MWwKHXLR1cEVgRAkCdTNd_thQeg7Zc6L2wq3oVeKBY0DMoYbSq5hjIY1dkjsfFxBin7Zoh-GnlR94L-RSAXh5Qdq7XZhVFP6_0ER_Q9D98I7TDBbD0Ou64y1fYeVVqn4HGVt">
+<span class="truncate">Continue with Apple</span>
+</button>
+</div>
+</div>
+<!-- MetaText Component (Separator) -->
+<p class="text-[#888888] text-sm font-normal leading-normal py-3 px-4 text-center">or</p>
+<!-- SingleButton Component (Email Signup) -->
+<div class="flex px-4 py-3 w-full">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 px-5 flex-1 bg-[#333333] text-white text-base font-bold leading-normal tracking-[0.015em] shadow-md shadow-gray-500/30">
+<span class="truncate">Sign up with Email</span>
+</button>
+</div>
+<!-- Login Link Component -->
+<div class="flex items-center justify-center pt-4 pb-12">
+<p class="text-[#888888] text-sm font-normal">Already have an account? <a class="font-bold text-[#333333] hover:underline" href="#">Log In</a></p>
+</div>
+<!-- Legal Text Component -->
+<div class="flex items-center justify-center pt-16 pb-8 px-4 text-center">
+<p class="text-xs text-[#888888]">By continuing, you agree to our <a class="underline" href="#">Terms of Service</a> and <a class="underline" href="#">Privacy Policy</a>.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+</body></html>

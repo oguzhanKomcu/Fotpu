@@ -1,0 +1,83 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CombiAI Splash Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ff6e61",
+                        "background-light": "#f8f6f5",
+                        "background-dark": "#23100f",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        @keyframes draw-hanger {
+            0% {
+                stroke-dashoffset: 1000;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+        .hanger-path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw-hanger 2s ease-out forwards;
+        }
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        .fade-in-text {
+            animation: fade-in 1s ease-in-out 1.5s forwards;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-white font-display">
+<div class="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-[#FFFDD0] via-[#FFDAB9] to-[#E6E6FA]">
+<div class="flex flex-col items-center justify-center space-y-6">
+<!-- Animated Logo -->
+<div class="w-32 h-32">
+<svg data-alt="An animated line drawing of a clothing hanger." viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<g class="hanger-path" fill="none" stroke="#4a4a4a" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+<path d="M 30 55 C 30 40, 40 30, 50 30 C 60 30, 70 40, 70 55 L 85 55 L 15 55 L 30 55 Z"></path>
+<path d="M 50 30 L 50 15 Q 50 10, 55 15"></path>
+</g>
+</svg>
+</div>
+<!-- App Name Text -->
+<h1 class="text-[#4a4a4a] text-4xl font-bold tracking-tight opacity-0 fade-in-text">Fotpu</h1>
+</div>
+</div>
+
+
+</body></html>

@@ -1,0 +1,41 @@
+require_relative '../node_modules/react-native/scripts/react_native_pods'
+require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+
+platform :ios, '15.1'
+prepare_react_native_project!
+
+# Configure Permissions for react-native-permissions
+setup_permissions([
+  'Camera',
+  'PhotoLibrary',
+  'LocationWhenInUse',
+  'Notifications'
+])
+
+target 'Fotpu' do
+  config = use_native_modules!
+
+  # React Native New Architecture (Fabric & TurboModules) + Hermes
+  use_react_native!(
+    :path => config[:reactNativePath],
+    :hermes_enabled => true,
+    :fabric_enabled => true
+  )
+
+  # Firebase Pods
+  pod 'Firebase', :modular_headers => true
+  pod 'FirebaseCore', :modular_headers => true
+  pod 'FirebaseMessaging', :modular_headers => true
+
+  target 'FotpuTests' do
+    inherit! :complete
+  end
+
+  post_install do |installer|
+    react_native_post_install(
+      installer,
+      config[:reactNativePath],
+      :mac_catalyst_enabled => false
+    )
+  end
+end

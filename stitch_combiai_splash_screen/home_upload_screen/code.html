@@ -1,0 +1,142 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CombiAI Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#E6E6FA",
+              "background-light": "#FCFCFC",
+              "background-dark": "#1a191d",
+              "content-light": "#181110",
+              "content-dark": "#e3e3e3",
+              "accent-pink": "#FADADD",
+              "accent-mint": "#CFFDE1",
+              "accent-blue": "#DDF3FF"
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 24px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden text-content-light dark:text-content-dark">
+<!-- Top App Bar -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10">
+<div class="flex size-12 shrink-0 items-center justify-center">
+<span class="material-symbols-outlined">menu</span>
+</div>
+<h1 class="text-xl font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">Fotpu</h1>
+</div>
+<main class="flex-grow px-4">
+<!-- Primary CTA Button -->
+<div class="flex py-6">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 px-5 flex-1 bg-primary text-content-light dark:text-background-dark gap-3 pl-5 text-base font-bold leading-normal tracking-[0.015em] shadow-sm">
+<span class="material-symbols-outlined">add_a_photo</span>
+<span class="truncate">Upload an item</span>
+</button>
+</div>
+<!-- Gender Filters -->
+<div class="flex gap-3 pb-3 overflow-x-auto">
+<div class="flex h-10 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-full bg-primary/60 dark:bg-primary/80 px-5">
+<p class="text-sm font-medium leading-normal text-content-light dark:text-background-dark">Womenswear</p>
+</div>
+<div class="flex h-10 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-full bg-gray-200 dark:bg-gray-700 px-5">
+<p class="text-sm font-medium leading-normal">Menswear</p>
+</div>
+<div class="flex h-10 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-full bg-gray-200 dark:bg-gray-700 px-5">
+<p class="text-sm font-medium leading-normal">All</p>
+</div>
+</div>
+<!-- Season Filters -->
+<div class="flex gap-3 pb-3 overflow-x-auto">
+<div class="flex h-10 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-full bg-gray-200 dark:bg-gray-700 px-5">
+<p class="text-sm font-medium leading-normal">Spring</p>
+</div>
+<div class="flex h-10 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-full bg-primary/60 dark:bg-primary/80 px-5">
+<p class="text-sm font-medium leading-normal text-content-light dark:text-background-dark">Summer</p>
+</div>
+<div class="flex h-10 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-full bg-gray-200 dark:bg-gray-700 px-5">
+<p class="text-sm font-medium leading-normal">Autumn</p>
+</div>
+<div class="flex h-10 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-full bg-gray-200 dark:bg-gray-700 px-5">
+<p class="text-sm font-medium leading-normal">Winter</p>
+</div>
+</div>
+<!-- Section Header -->
+<h3 class="text-xl font-bold leading-tight tracking-[-0.015em] pt-6 pb-4">AI-Generated Looks</h3>
+<!-- Outfit Card Carousel -->
+<div class="flex gap-4 overflow-x-auto pb-6 -mx-4 px-4">
+<!-- Card 1 -->
+<div class="relative w-48 flex-shrink-0">
+<div class="relative overflow-hidden rounded-xl shadow-lg">
+<img class="h-64 w-full object-cover" data-alt="A woman in a stylish summer outfit with a white top and floral skirt, standing in a field." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxT8YwLouW_rzj0JT0YAW6OpiC_jNEvLf0dyo3bJXgaReJP0OEnkgWzSOySJ58_HHKTB1pKPro0ljoB5QhLzHIRyBILpKf4NqVx0EjUXDxTVpQoAl4sm3nmtl6MKZP5SAr8a1zd0wjxESp_ejlsK6gFOFRwlOdjQ7fFeGkTCvpf2oz5I7pKp6IKcI8Fj_y-upbBYA2aMIauzAEi8oOLyE4V-hcWfsK0mHCC5McOi_a97RgNN5SJQyks_3LUGuy6eKjW5OOKii1Aw8i">
+<div class="absolute right-3 top-3 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-white/50 backdrop-blur-sm">
+<span class="material-symbols-outlined text-red-500" style="font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20; font-size: 20px;">favorite</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="relative w-48 flex-shrink-0">
+<div class="relative overflow-hidden rounded-xl shadow-lg">
+<img class="h-64 w-full object-cover" data-alt="A man wearing a casual summer outfit with a patterned shirt and shorts." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdlWBxLY8cICPinQzx0uQzNh6lwqyPifceYxuU2PvxkXyLaOL-_YAHtaxZeGQll1MT4S1NhrKg4348SUI8_SVPqdaHiXty1k_ou2_e8X6K2Fbtqt3hiaSdy4vPq15AJLFVV5YI4ghhEckmxpcUGnZ54WfNPxAMIimozH1ae9Y59yZMcVMat4Mg9MVZ0XL6lZoxs-AW4FNotXDlrk-TkBl2NSyxCbVQcyZVg6WWtGBASzlNSWkGw-L8hE5y8V-kmUrFNg0aqNpAAiZM">
+<div class="absolute right-3 top-3 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-white/50 backdrop-blur-sm">
+<span class="material-symbols-outlined text-content-light dark:text-background-dark" style="font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20; font-size: 20px;">favorite</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="relative w-48 flex-shrink-0">
+<div class="relative overflow-hidden rounded-xl shadow-lg">
+<img class="h-64 w-full object-cover" data-alt="A man in a smart-casual outfit featuring a blazer and trousers." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC17A07VEtdFhevcdAV-1WCWTnQgKUWCnBhmoVirZHz35II3WDad4CL8-FONMcR7BwSZQJpNz6i1uAQYqtt3fCNxDNhcdATfp1bAhzNStzRq-5Z_4uMpl2epxwcg1ZaUDvkHpk-7fOuv4kxIGVOKGnS-rCC5Fbzk4VIF4it72TO___k8MyWRQxFUj7mhydayVsaEmS5zKAl8I-fUJoTtpkopa2vzYQT2XDBFcXW-KGz8RVcyxkN7GgAx-po5v-cHRHJcX3n5nkcDpfn">
+<div class="absolute right-3 top-3 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-white/50 backdrop-blur-sm">
+<span class="material-symbols-outlined text-content-light dark:text-background-dark" style="font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20; font-size: 20px;">favorite</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="sticky bottom-0 z-10 flex justify-around border-t border-gray-200 bg-background-light/80 py-2 backdrop-blur-lg dark:border-gray-700 dark:bg-background-dark/80">
+<a class="flex flex-col items-center gap-1 text-primary dark:text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">home</span>
+<span class="text-xs font-bold">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-500 dark:text-gray-400" href="#">
+<span class="material-symbols-outlined">checkroom</span>
+<span class="text-xs font-medium">Wardrobe</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-500 dark:text-gray-400" href="#">
+<span class="material-symbols-outlined">bookmark</span>
+<span class="text-xs font-medium">Saved</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-500 dark:text-gray-400" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-xs font-medium">Profile</span>
+</a>
+</nav>
+</div>
+
+
+</body></html>
