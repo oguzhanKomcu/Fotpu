@@ -9,7 +9,7 @@ export const getLocalizedAuthError = (error: any): string => {
   if (
     error.message === 'Network Error' ||
     error.code === 'ECONNABORTED' ||
-    error.name === 'AxiosError' && !error.response
+    (error.name === 'AxiosError' && !error.response)
   ) {
     return i18n.t('auth.errors.networkError');
   }
@@ -17,6 +17,7 @@ export const getLocalizedAuthError = (error: any): string => {
   const status = error.response?.status;
   const detail = (
     error.response?.data?.detail ||
+    error.response?.data?.error ||
     error.response?.data?.title ||
     error.response?.data?.message ||
     error.message ||
@@ -28,9 +29,12 @@ export const getLocalizedAuthError = (error: any): string => {
     status === 401 ||
     detail.includes('invalid') ||
     detail.includes('credentials') ||
-    detail.includes('password') && detail.includes('incorrect') ||
+    detail.includes('geçersiz') ||
+    detail.includes('hatalı') ||
+    detail.includes('şifre') ||
+    detail.includes('bulunamadı') ||
     detail.includes('not found') ||
-    detail.includes('hatalı')
+    detail.includes('password')
   ) {
     return i18n.t('auth.errors.invalidCredentials');
   }
@@ -42,7 +46,8 @@ export const getLocalizedAuthError = (error: any): string => {
     detail.includes('already taken') ||
     detail.includes('in use') ||
     detail.includes('kullanımda') ||
-    detail.includes('mevcut')
+    detail.includes('mevcut') ||
+    detail.includes('zaten')
   ) {
     return i18n.t('auth.errors.userAlreadyExists');
   }
@@ -52,9 +57,14 @@ export const getLocalizedAuthError = (error: any): string => {
     return i18n.t('auth.errors.serverError');
   }
 
-  // Fallback to error message or unknown error
   if (error.response?.data?.detail) {
     return error.response.data.detail;
+  }
+  if (error.response?.data?.message) {
+    return error.response.data.message;
+  }
+  if (error.message && typeof error.message === 'string' && error.message !== 'Error') {
+    return error.message;
   }
 
   return i18n.t('auth.errors.unknownError');
