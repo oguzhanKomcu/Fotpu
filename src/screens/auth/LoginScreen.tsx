@@ -65,6 +65,7 @@ export const LoginScreen: React.FC<Props> = ({ navigation }) => {
         password,
       });
     } catch (err: any) {
+      console.log('[Login Error Debug]:', err?.message, err?.response?.status, JSON.stringify(err?.response?.data));
       const localizedError = getLocalizedAuthError(err);
       setServerError(localizedError);
       Alert.alert(t('common.error'), localizedError);

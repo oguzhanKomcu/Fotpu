@@ -100,6 +100,7 @@ export const RegisterScreen: React.FC<Props> = ({ navigation }) => {
       });
       Alert.alert(t('common.success'), t('auth.registerSuccess'));
     } catch (err: any) {
+      console.log('[Register Error Debug]:', err?.message, err?.response?.status, JSON.stringify(err?.response?.data));
       const localizedError = getLocalizedAuthError(err);
       setServerError(localizedError);
       Alert.alert(t('common.error'), localizedError);
