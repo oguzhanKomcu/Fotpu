@@ -80,7 +80,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         error.message ||
         'Giriş yapılamadı';
       set({ error: message, isLoading: false });
-      throw new Error(message);
+      throw error;
     }
   },
 
@@ -101,7 +101,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         error.message ||
         'Kayıt olunamadı';
       set({ error: message, isLoading: false });
-      throw new Error(message);
+      throw error;
     }
   },
 
