@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Alert } from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  Alert,
+  StyleSheet,
+  SafeAreaView,
+  StatusBar,
+} from 'react-native';
 import { PermissionService } from '@/services/permissions/permissionService';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
@@ -75,58 +84,61 @@ export const UploadOutfitScreen: React.FC = () => {
   };
 
   return (
-    <View className="flex-1 bg-background-light dark:bg-background-dark">
+    <SafeAreaView style={styles.safeArea}>
+      <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
       {/* Header */}
-      <View className="flex-row items-center justify-between px-4 pt-12 pb-3 border-b border-gray-100 dark:border-zinc-800">
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Text className="text-base text-primary font-bold">{t('upload.cancel')}</Text>
+      <View style={styles.header}>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={() => navigation.goBack()}
+          style={styles.cancelBtn}
+        >
+          <Text style={styles.cancelText}>{t('upload.cancel')}</Text>
         </TouchableOpacity>
-        <Text className="text-lg font-bold text-[#181110] dark:text-white">
-          {t('upload.title')}
-        </Text>
-        <View className="w-10" />
+        <Text style={styles.headerTitle}>{t('upload.title')}</Text>
+        <View style={styles.placeholderBox} />
       </View>
 
-      <ScrollView className="flex-1 px-4 py-6" showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={styles.scrollContainer}
+        contentContainerStyle={styles.scrollContent}
+      >
         {/* Photo Selection Box */}
-        <View className="w-full aspect-[4/3] rounded-2xl bg-gray-100 dark:bg-zinc-800 border-2 border-dashed border-gray-300 dark:border-zinc-700 items-center justify-center p-4 mb-6">
+        <View style={styles.photoBox}>
           {imageUri ? (
-            <View className="items-center">
-              <Text className="text-3xl mb-2">✨</Text>
-              <Text className="text-sm font-bold text-primary">{t('upload.photoReady')}</Text>
-              <TouchableOpacity onPress={() => setImageUri(null)} className="mt-2">
-                <Text className="text-xs text-red-500 underline">{t('upload.changePhoto')}</Text>
+            <View style={styles.photoReadyBox}>
+              <Text style={styles.photoReadyEmoji}>✨</Text>
+              <Text style={styles.photoReadyTitle}>{t('upload.photoReady')}</Text>
+              <TouchableOpacity onPress={() => setImageUri(null)} style={styles.changePhotoBtn}>
+                <Text style={styles.changePhotoText}>{t('upload.changePhoto')}</Text>
               </TouchableOpacity>
             </View>
           ) : (
-            <View className="flex-row gap-4">
+            <View style={styles.pickRow}>
               <TouchableOpacity
                 activeOpacity={0.8}
                 onPress={handleCameraPress}
-                className="items-center justify-center p-4 bg-white dark:bg-zinc-700 rounded-xl shadow-sm"
+                style={styles.pickOption}
               >
-                <Text className="text-3xl mb-1">📷</Text>
-                <Text className="text-xs font-bold text-gray-700 dark:text-gray-200">
-                  {t('upload.camera')}
-                </Text>
+                <Text style={styles.pickIcon}>📷</Text>
+                <Text style={styles.pickLabel}>{t('upload.camera')}</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
                 activeOpacity={0.8}
                 onPress={handleGalleryPress}
-                className="items-center justify-center p-4 bg-white dark:bg-zinc-700 rounded-xl shadow-sm"
+                style={styles.pickOption}
               >
-                <Text className="text-3xl mb-1">🖼️</Text>
-                <Text className="text-xs font-bold text-gray-700 dark:text-gray-200">
-                  {t('upload.gallery')}
-                </Text>
+                <Text style={styles.pickIcon}>🖼️</Text>
+                <Text style={styles.pickLabel}>{t('upload.gallery')}</Text>
               </TouchableOpacity>
             </View>
           )}
         </View>
 
         {/* Inputs */}
-        <View className="space-y-4">
+        <View style={styles.formContainer}>
           <Input
             label={t('upload.description')}
             placeholder={t('upload.descriptionPlaceholder')}
@@ -134,7 +146,7 @@ export const UploadOutfitScreen: React.FC = () => {
             onChangeText={setDescription}
             multiline
             numberOfLines={3}
-            className="h-20"
+            style={styles.textArea}
           />
 
           <Input
@@ -148,12 +160,123 @@ export const UploadOutfitScreen: React.FC = () => {
             title={t('upload.publish')}
             variant="primary"
             size="lg"
-            className="mt-6 mb-12"
             isLoading={isUploading}
             onPress={handleUpload}
+            style={styles.publishBtn}
           />
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
+  header: {
+    height: 56,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#F0F0F0',
+    backgroundColor: '#FFFFFF',
+  },
+  cancelBtn: {
+    paddingVertical: 6,
+  },
+  cancelText: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: '#7e47eb',
+  },
+  headerTitle: {
+    fontSize: 18,
+    fontWeight: '800',
+    color: '#181110',
+  },
+  placeholderBox: {
+    width: 48,
+  },
+  scrollContainer: {
+    flex: 1,
+    backgroundColor: '#FAF9F8',
+  },
+  scrollContent: {
+    paddingHorizontal: 20,
+    paddingVertical: 20,
+  },
+  photoBox: {
+    width: '100%',
+    aspectRatio: 4 / 3,
+    borderRadius: 20,
+    backgroundColor: '#FFFFFF',
+    borderWidth: 2,
+    borderStyle: 'dashed',
+    borderColor: '#D1D5DB',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 16,
+    marginBottom: 20,
+  },
+  photoReadyBox: {
+    alignItems: 'center',
+  },
+  photoReadyEmoji: {
+    fontSize: 36,
+    marginBottom: 8,
+  },
+  photoReadyTitle: {
+    fontSize: 15,
+    fontWeight: '800',
+    color: '#7e47eb',
+  },
+  changePhotoBtn: {
+    marginTop: 8,
+    padding: 4,
+  },
+  changePhotoText: {
+    fontSize: 13,
+    color: '#EF4444',
+    textDecorationLine: 'underline',
+    fontWeight: '600',
+  },
+  pickRow: {
+    flexDirection: 'row',
+    gap: 16,
+  },
+  pickOption: {
+    width: 110,
+    height: 100,
+    backgroundColor: '#F9FAFB',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#E5E7EB',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  pickIcon: {
+    fontSize: 32,
+    marginBottom: 6,
+  },
+  pickLabel: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#333333',
+  },
+  formContainer: {
+    width: '100%',
+  },
+  textArea: {
+    height: 80,
+    textAlignVertical: 'top',
+    paddingTop: 10,
+  },
+  publishBtn: {
+    marginTop: 16,
+    marginBottom: 32,
+  },
+});

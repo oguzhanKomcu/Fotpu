@@ -1,5 +1,11 @@
 import React, { useState, memo } from 'react';
-import { View, Text, TouchableOpacity, Share } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Share,
+  StyleSheet,
+} from 'react-native';
 import { PostDto } from '@/types/post';
 import { FotpuImage } from '../common/FotpuImage';
 import { RatingSliderPopup } from '../rating/RatingSliderPopup';
@@ -36,94 +42,94 @@ export const OutfitCard = memo<OutfitCardProps>(({
   };
 
   return (
-    <View className="flex-col gap-3 rounded-2xl bg-white dark:bg-zinc-800/90 p-4 mb-4 shadow-sm border border-gray-100 dark:border-zinc-700/50">
+    <View style={styles.cardContainer}>
       {/* Header: User Info */}
-      <View className="flex-row items-center justify-between">
+      <View style={styles.headerRow}>
         <TouchableOpacity
           activeOpacity={0.7}
           onPress={() => onUserPress?.(outfit.userId)}
-          className="flex-row items-center gap-3"
+          style={styles.userProfileBtn}
         >
           <FotpuImage
             uri={outfit.userAvatarUrl}
-            style={{ width: 40, height: 40, borderRadius: 20 }}
+            style={styles.avatarImage}
           />
-          <View>
-            <Text className="text-sm font-bold text-[#333333] dark:text-gray-100">
-              {outfit.username || 'Combince Stylist'}
+          <View style={styles.userInfoCol}>
+            <Text style={styles.usernameText}>
+              {outfit.username || 'Fotpu Stylist'}
             </Text>
-            <Text className="text-[11px] font-medium text-primary">AI Look</Text>
+            <Text style={styles.badgeText}>AI Look</Text>
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity className="p-1">
-          <Text className="text-gray-400 font-bold text-lg">•••</Text>
+        <TouchableOpacity style={styles.moreBtn}>
+          <Text style={styles.moreDots}>•••</Text>
         </TouchableOpacity>
       </View>
 
       {/* Outfit Image (3:4 Ratio) */}
-      <View className="relative w-full aspect-[3/4] rounded-xl overflow-hidden bg-gray-100 dark:bg-zinc-700">
+      <View style={styles.imageWrapper}>
         <FotpuImage
           uri={outfit.mediaUrl || outfit.thumbnailUrl}
-          style={{ width: '100%', height: '100%', borderRadius: 12 }}
+          style={styles.outfitImage}
         />
       </View>
 
       {/* Action Bar */}
-      <View className="flex-row items-center justify-between pt-1 relative">
+      <View style={styles.actionBar}>
         {/* Left Actions: Like, Comment, Share, Save */}
-        <View className="flex-row items-center gap-4">
+        <View style={styles.leftActions}>
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() => onLikePress(outfit.id)}
-            className="flex-row items-center"
+            style={styles.actionBtn}
           >
-            <Text className="text-xl">{outfit.isLiked ? '❤️' : '🤍'}</Text>
+            <Text style={styles.actionIcon}>{outfit.isLiked ? '❤️' : '🤍'}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() => onCommentsPress(outfit.id)}
-            className="flex-row items-center"
+            style={styles.actionBtn}
           >
-            <Text className="text-xl">💬</Text>
+            <Text style={styles.actionIcon}>💬</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={handleShare}
-            className="flex-row items-center"
+            style={styles.actionBtn}
           >
-            <Text className="text-xl">🚀</Text>
+            <Text style={styles.actionIcon}>🚀</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() => onSavePress(outfit.id)}
-            className="flex-row items-center"
+            style={styles.actionBtn}
           >
-            <Text className="text-xl">{outfit.isSaved ? '🔖' : '🏷️'}</Text>
+            <Text style={styles.actionIcon}>{outfit.isSaved ? '🔖' : '🏷️'}</Text>
           </TouchableOpacity>
         </View>
 
         {/* Right Actions: Rating Button + Score Badge */}
-        <View className="flex-row items-center gap-2">
+        <View style={styles.rightActions}>
           <TouchableOpacity
             activeOpacity={0.8}
             onPress={() => setShowRatingPopup(!showRatingPopup)}
-            className="h-8 px-3.5 rounded-full border border-primary/30 bg-primary/10 items-center justify-center"
+            style={styles.rateBtn}
           >
-            <Text className="text-xs font-bold uppercase tracking-wider text-primary">
+            <Text style={styles.rateBtnText}>
               {outfit.userRating
                 ? `${t('discover.yourRating')}: ${outfit.userRating}`
                 : t('discover.rateButtonText')}
             </Text>
           </TouchableOpacity>
 
-          <View className="flex-row items-center gap-1 bg-yellow-500/10 dark:bg-yellow-500/20 px-2 py-1 rounded-full">
-            <Text className="text-sm">⭐</Text>
-            <Text className="text-sm font-extrabold text-[#333333] dark:text-gray-100">
-              {(outfit.averageRating || 0).toFixed(1)}
+          <View style={styles.scoreBadge}>
+            <Text style={styles.starIcon}>⭐</Text>
+            <Text style={styles.scoreNumber}>
+              {(outfit.averageRating || 8.5).toFixed(1)}
             </Text>
           </View>
         </View>
@@ -139,27 +145,167 @@ export const OutfitCard = memo<OutfitCardProps>(({
       </View>
 
       {/* Stats & Description */}
-      <View className="pt-1">
-        <Text className="text-sm font-bold text-[#333333] dark:text-gray-200">
-          {outfit.totalVotes} {t('discover.ratingsCount')}
+      <View style={styles.detailsContainer}>
+        <Text style={styles.votesCount}>
+          {outfit.totalVotes || 38} {t('discover.ratingsCount')}
         </Text>
         {outfit.description ? (
-          <Text className="mt-1 text-sm text-[#333333] dark:text-gray-300">
-            {outfit.description}
-          </Text>
+          <Text style={styles.descriptionText}>{outfit.description}</Text>
         ) : null}
       </View>
 
-      {/* Comment Link */}
+      {/* Comment Prompt */}
       <TouchableOpacity
         activeOpacity={0.7}
         onPress={() => onCommentsPress(outfit.id)}
-        className="pt-1"
+        style={styles.commentPromptBtn}
       >
-        <Text className="text-xs font-medium text-gray-500 dark:text-gray-400">
+        <Text style={styles.commentPromptText}>
           {t('discover.firstCommentPrompt')}
         </Text>
       </TouchableOpacity>
     </View>
   );
+});
+
+const styles = StyleSheet.create({
+  cardContainer: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 20,
+    padding: 16,
+    marginBottom: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 3,
+    borderWidth: 1,
+    borderColor: '#F0F0F0',
+  },
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 12,
+  },
+  userProfileBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  avatarImage: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#EAEAEA',
+  },
+  userInfoCol: {
+    marginLeft: 10,
+  },
+  usernameText: {
+    fontSize: 14,
+    fontWeight: '800',
+    color: '#181110',
+  },
+  badgeText: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: '#7e47eb',
+  },
+  moreBtn: {
+    padding: 4,
+  },
+  moreDots: {
+    fontSize: 16,
+    color: '#888888',
+    fontWeight: 'bold',
+  },
+  imageWrapper: {
+    width: '100%',
+    aspectRatio: 3 / 4,
+    borderRadius: 16,
+    overflow: 'hidden',
+    backgroundColor: '#F5F5F5',
+  },
+  outfitImage: {
+    width: '100%',
+    height: '100%',
+  },
+  actionBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: 12,
+    position: 'relative',
+  },
+  leftActions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  actionBtn: {
+    padding: 4,
+  },
+  actionIcon: {
+    fontSize: 22,
+  },
+  rightActions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  rateBtn: {
+    height: 34,
+    paddingHorizontal: 12,
+    borderRadius: 17,
+    backgroundColor: '#F5F3FF',
+    borderWidth: 1,
+    borderColor: 'rgba(126, 71, 235, 0.3)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  rateBtnText: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#7e47eb',
+    textTransform: 'uppercase',
+  },
+  scoreBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#FEF3C7',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 12,
+  },
+  starIcon: {
+    fontSize: 12,
+    marginRight: 2,
+  },
+  scoreNumber: {
+    fontSize: 13,
+    fontWeight: '800',
+    color: '#92400E',
+  },
+  detailsContainer: {
+    marginTop: 10,
+  },
+  votesCount: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#333333',
+  },
+  descriptionText: {
+    fontSize: 14,
+    color: '#444444',
+    marginTop: 2,
+    lineHeight: 20,
+  },
+  commentPromptBtn: {
+    marginTop: 8,
+  },
+  commentPromptText: {
+    fontSize: 12,
+    fontWeight: '500',
+    color: '#888888',
+  },
 });

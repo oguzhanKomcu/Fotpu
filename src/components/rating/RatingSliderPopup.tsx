@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, PanResponder } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  PanResponder,
+  StyleSheet,
+} from 'react-native';
 import { useTranslation } from '@/store/languageStore';
 
 interface RatingSliderPopupProps {
@@ -20,7 +26,7 @@ export const RatingSliderPopup: React.FC<RatingSliderPopupProps> = ({
   const calculateRatingFromX = (x: number) => {
     const clampedX = Math.max(0, Math.min(x, sliderWidth));
     const ratio = clampedX / sliderWidth;
-    const computed = 1.0 + ratio * 4.0; // 1 to 5 scale (or up to 10)
+    const computed = 1.0 + ratio * 4.0;
     return Math.round(computed);
   };
 
@@ -37,59 +43,151 @@ export const RatingSliderPopup: React.FC<RatingSliderPopupProps> = ({
   const progressPercent = ((rating - 1) / 4) * 100;
 
   return (
-    <View className="absolute bottom-12 right-0 z-30 w-56 p-4 rounded-2xl bg-white/95 dark:bg-zinc-900/95 border border-purple-100 dark:border-zinc-700 shadow-2xl">
+    <View style={styles.popupContainer}>
       {/* Header */}
-      <View className="flex-row items-center justify-between pb-2">
-        <Text className="text-xs font-bold text-primary uppercase tracking-wider">
-          {t('discover.rateLook')}
-        </Text>
-        <View className="bg-primary/10 px-2 py-0.5 rounded-full">
-          <Text className="text-sm font-extrabold text-primary">{rating} / 5</Text>
+      <View style={styles.headerRow}>
+        <Text style={styles.titleText}>{t('discover.rateLook')}</Text>
+        <View style={styles.scoreBadge}>
+          <Text style={styles.scoreText}>{rating} / 5</Text>
         </View>
       </View>
 
       {/* Interactive Slider Track */}
       <View
-        className="py-3"
+        style={styles.sliderBox}
         onLayout={(e) => setSliderWidth(e.nativeEvent.layout.width)}
         {...panResponder.panHandlers}
       >
-        <View className="h-2 w-full bg-gray-200 dark:bg-zinc-700 rounded-full overflow-hidden justify-center">
-          <View
-            style={{ width: `${progressPercent}%` }}
-            className="h-full bg-primary rounded-full"
-          />
+        <View style={styles.trackBackground}>
+          <View style={[styles.trackFill, { width: `${progressPercent}%` }]} />
         </View>
 
         {/* Min / Max Labels */}
-        <View className="flex-row justify-between mt-2">
-          <Text className="text-[10px] font-medium text-gray-400">1</Text>
-          <Text className="text-[10px] font-medium text-gray-400">5</Text>
+        <View style={styles.rangeLabelsRow}>
+          <Text style={styles.rangeLabel}>1</Text>
+          <Text style={styles.rangeLabel}>5</Text>
         </View>
       </View>
 
       {/* Actions */}
-      <View className="flex-row gap-2 mt-1">
+      <View style={styles.actionsRow}>
         <TouchableOpacity
+          activeOpacity={0.7}
           onPress={onClose}
-          className="flex-1 py-2 rounded-lg bg-gray-100 dark:bg-zinc-800 items-center"
+          style={styles.cancelBtn}
         >
-          <Text className="text-xs font-semibold text-gray-600 dark:text-gray-300">
-            {t('common.cancel')}
-          </Text>
+          <Text style={styles.cancelText}>{t('common.cancel')}</Text>
         </TouchableOpacity>
         <TouchableOpacity
+          activeOpacity={0.8}
           onPress={() => {
             onRateSubmit(rating);
             onClose();
           }}
-          className="flex-1 py-2 rounded-lg bg-primary items-center"
+          style={styles.submitBtn}
         >
-          <Text className="text-xs font-bold text-white">
-            {t('discover.rateButtonText')}
-          </Text>
+          <Text style={styles.submitText}>{t('discover.rateButtonText')}</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  popupContainer: {
+    position: 'absolute',
+    bottom: 50,
+    right: 0,
+    zIndex: 99,
+    width: 230,
+    padding: 16,
+    borderRadius: 20,
+    backgroundColor: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: '#E9D5FF',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.2,
+    shadowRadius: 12,
+    elevation: 8,
+  },
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 8,
+  },
+  titleText: {
+    fontSize: 12,
+    fontWeight: '800',
+    color: '#7e47eb',
+    textTransform: 'uppercase',
+  },
+  scoreBadge: {
+    backgroundColor: '#F5F3FF',
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    borderRadius: 12,
+  },
+  scoreText: {
+    fontSize: 13,
+    fontWeight: '900',
+    color: '#7e47eb',
+  },
+  sliderBox: {
+    paddingVertical: 8,
+  },
+  trackBackground: {
+    height: 8,
+    width: '100%',
+    backgroundColor: '#E5E7EB',
+    borderRadius: 4,
+    overflow: 'hidden',
+  },
+  trackFill: {
+    height: '100%',
+    backgroundColor: '#7e47eb',
+    borderRadius: 4,
+  },
+  rangeLabelsRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 4,
+  },
+  rangeLabel: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: '#9CA3AF',
+  },
+  actionsRow: {
+    flexDirection: 'row',
+    gap: 8,
+    marginTop: 6,
+  },
+  cancelBtn: {
+    flex: 1,
+    paddingVertical: 8,
+    borderRadius: 10,
+    backgroundColor: '#F3F4F6',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  cancelText: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#4B5563',
+  },
+  submitBtn: {
+    flex: 1,
+    paddingVertical: 8,
+    borderRadius: 10,
+    backgroundColor: '#7e47eb',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  submitText: {
+    fontSize: 12,
+    fontWeight: '800',
+    color: '#FFFFFF',
+  },
+});

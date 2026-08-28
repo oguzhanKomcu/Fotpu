@@ -1,5 +1,13 @@
 import React, { useEffect } from 'react';
-import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ActivityIndicator,
+  StyleSheet,
+  SafeAreaView,
+  StatusBar,
+} from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import { useOutfitStore } from '@/store/outfitStore';
 import { useTranslation } from '@/store/languageStore';
@@ -39,26 +47,26 @@ export const DiscoverScreen: React.FC = () => {
   );
 
   return (
-    <View className="flex-1 bg-background-light dark:bg-background-dark">
-      {/* Top App Bar */}
-      <View className="flex-row items-center justify-between px-4 pt-12 pb-3 bg-background-light/90 dark:bg-background-dark/90 border-b border-gray-100 dark:border-zinc-800">
-        <Text className="text-2xl font-extrabold text-[#333333] dark:text-white tracking-tight">
-          {t('discover.title')}
-        </Text>
-        <TouchableOpacity className="h-9 w-9 rounded-full bg-primary/10 items-center justify-center">
-          <Text className="text-base">🔍</Text>
+    <SafeAreaView style={styles.safeArea}>
+      <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
+      {/* Top Header */}
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>{t('discover.title')}</Text>
+        <TouchableOpacity style={styles.searchBtn}>
+          <Text style={styles.searchIcon}>🔍</Text>
         </TouchableOpacity>
       </View>
 
-      {/* High-Performance FlashList Feed */}
-      <View className="flex-1 px-3 pt-3">
+      {/* Feed List */}
+      <View style={styles.listContainer}>
         <FlashList
           data={feedItems}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
-          estimatedItemSize={520}
+          estimatedItemSize={480}
           onRefresh={refreshFeed}
           refreshing={isRefreshing}
+          contentContainerStyle={styles.listContent}
           onEndReached={() => {
             if (hasNextPage && !isLoading) {
               fetchFeed();
@@ -67,7 +75,7 @@ export const DiscoverScreen: React.FC = () => {
           onEndReachedThreshold={0.5}
           ListFooterComponent={
             isLoading ? (
-              <View className="py-6 items-center">
+              <View style={styles.loadingFooter}>
                 <ActivityIndicator size="small" color="#7E47EB" />
               </View>
             ) : null
@@ -75,6 +83,53 @@ export const DiscoverScreen: React.FC = () => {
           showsVerticalScrollIndicator={false}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
+  header: {
+    height: 56,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#F0F0F0',
+    backgroundColor: '#FFFFFF',
+  },
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: '900',
+    color: '#181110',
+    letterSpacing: -0.5,
+  },
+  searchBtn: {
+    width: 38,
+    height: 38,
+    borderRadius: 19,
+    backgroundColor: '#F5F3FF',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  searchIcon: {
+    fontSize: 16,
+  },
+  listContainer: {
+    flex: 1,
+    backgroundColor: '#FAF9F8',
+  },
+  listContent: {
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+  },
+  loadingFooter: {
+    paddingVertical: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
