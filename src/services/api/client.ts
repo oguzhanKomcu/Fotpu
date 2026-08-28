@@ -1,10 +1,10 @@
 import axios, { AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
-import Config from 'react-native-config';
+import { ENV } from '@/config/env';
 import { secureStorage } from '../storage/secureStorage';
 import { RefreshTokenUserCommand, LoginResponse } from '@/types/auth';
 
-const BASE_URL = Config.API_BASE_URL || 'http://10.0.2.2:5041'; // Android emulator localhost default, or Config.API_BASE_URL
-const TIMEOUT = Number(Config.API_TIMEOUT) || 20000;
+const BASE_URL = ENV.API_BASE_URL;
+const TIMEOUT = ENV.API_TIMEOUT;
 
 export const apiClient: AxiosInstance = axios.create({
   baseURL: BASE_URL,
