@@ -5,9 +5,9 @@ import {
   TouchableOpacity,
   ScrollView,
   StyleSheet,
-  SafeAreaView,
   StatusBar,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useUserStore } from '@/store/userStore';
 import { useAuthStore } from '@/store/authStore';
 import { useTranslation } from '@/store/languageStore';
@@ -38,7 +38,7 @@ export const ProfileScreen: React.FC = () => {
   const activeUser = profile || currentUser;
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
       <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
       {/* Top Header */}
       <View style={styles.header}>

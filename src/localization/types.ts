@@ -10,6 +10,8 @@ export interface LanguageInfo {
 export interface TranslationSchema {
   common: {
     save: string;
+    savedSuccess: string;
+    unsavedSuccess: string;
     cancel: string;
     delete: string;
     edit: string;
@@ -23,6 +25,10 @@ export interface TranslationSchema {
     yes: string;
     no: string;
     ok: string;
+    comments: string;
+    reply: string;
+    follow: string;
+    following: string;
   };
   auth: {
     appTitle: string;
@@ -71,6 +77,7 @@ export interface TranslationSchema {
   };
   home: {
     headerTitle: string;
+    followingFeed: string;
     uploadItemCta: string;
     womenswear: string;
     menswear: string;
@@ -84,12 +91,22 @@ export interface TranslationSchema {
   };
   discover: {
     title: string;
+    searchPlaceholder: string;
+    noResults: string;
+    noResultsDesc: string;
+    clearFilters: string;
     rateLook: string;
     rateOutfitTitle: string;
     rateButtonText: string;
+    ratedButtonText: string;
     yourRating: string;
     likesCount: string;
     ratingsCount: string;
+    firstToRate: string;
+    chooseRating: string;
+    fineTuneScore: string;
+    sliderHint: string;
+    submitRating: string;
     viewAllComments: string;
     firstCommentPrompt: string;
     addCommentPlaceholder: string;
@@ -102,12 +119,15 @@ export interface TranslationSchema {
     publish: string;
     camera: string;
     gallery: string;
+    pickFromGallery: string;
     photoReady: string;
     changePhoto: string;
     postTitle: string;
     postTitlePlaceholder: string;
     description: string;
     descriptionPlaceholder: string;
+    tags: string;
+    tagsPlaceholder: string;
     category: string;
     season: string;
     successMessage: string;

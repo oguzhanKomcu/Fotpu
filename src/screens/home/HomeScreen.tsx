@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -6,61 +6,104 @@ import {
   TouchableOpacity,
   RefreshControl,
   StyleSheet,
-  SafeAreaView,
   StatusBar,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useOutfitStore } from '@/store/outfitStore';
 import { useTranslation } from '@/store/languageStore';
-import { FotpuImage } from '@/components/common/FotpuImage';
+import { OutfitCard } from '@/components/outfit/OutfitCard';
+import { CommentsBottomSheet } from '@/components/outfit/CommentsBottomSheet';
+import { RatingModal } from '@/components/rating/RatingModal';
+import { ExtendedPostDto } from '@/services/mock/testData';
 import { useNavigation } from '@react-navigation/native';
-import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
-import { AppTabParamList } from '@/types/navigation';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '@/types/navigation';
+import Svg, { Path } from 'react-native-svg';
 
 export const HomeScreen: React.FC = () => {
-  const navigation = useNavigation<BottomTabNavigationProp<AppTabParamList>>();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { t } = useTranslation();
   const {
     feedItems,
-    selectedCategory,
-    selectedSeason,
-    setCategoryFilter,
-    setSeasonFilter,
     fetchFeed,
     isRefreshing,
     refreshFeed,
     toggleLike,
+    toggleSave,
+    submitRating,
+    addComment,
+    toggleCommentLike,
   } = useOutfitStore();
+
+  const [activeCommentsPostId, setActiveCommentsPostId] = useState<string | null>(null);
+  const [activeRatingPost, setActiveRatingPost] = useState<ExtendedPostDto | null>(null);
 
   useEffect(() => {
     fetchFeed(true);
   }, []);
 
-  const categoryTabs = [
-    { key: 'female', label: t('home.womenswear') },
-    { key: 'male', label: t('home.menswear') },
-    { key: 'all', label: t('home.all') },
-  ];
+  const activePost = feedItems.find((p) => p.id === activeCommentsPostId);
 
-  const seasonTabs = [
-    { key: 'spring', label: t('home.spring') },
-    { key: 'summer', label: t('home.summer') },
-    { key: 'autumn', label: t('home.autumn') },
-    { key: 'winter', label: t('home.winter') },
-  ];
+  const handleOpenComments = (postId: string) => {
+    setActiveCommentsPostId(postId);
+  };
+
+  const handleCloseComments = () => {
+    setActiveCommentsPostId(null);
+  };
+
+  const handleOpenRating = (outfit: ExtendedPostDto) => {
+    setActiveRatingPost(outfit);
+  };
+
+  const handleCloseRating = () => {
+    setActiveRatingPost(null);
+  };
+
+  const handleAddComment = (text: string) => {
+    if (activeCommentsPostId) {
+      addComment(activeCommentsPostId, text);
+    }
+  };
+
+  const handleToggleCommentLike = (commentId: string) => {
+    if (activeCommentsPostId) {
+      toggleCommentLike(activeCommentsPostId, commentId);
+    }
+  };
+
+  const handleRateSubmit = (rating: number) => {
+    if (activeRatingPost) {
+      submitRating(activeRatingPost.id, rating);
+    }
+  };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
       <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
+
       {/* Top Header */}
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Fotpu</Text>
         <TouchableOpacity
           activeOpacity={0.7}
-          onPress={() => navigation.navigate('Upload')}
-          style={styles.headerUploadBtn}
+          onPress={() => {}}
+          style={styles.menuBtn}
         >
-          <Text style={styles.headerUploadIcon}>➕</Text>
+          <Svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <Path
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              stroke="#111827"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </Svg>
         </TouchableOpacity>
+
+        <Text style={styles.headerTitle}>Fotpu</Text>
+
+        {/* Dummy placeholder for perfect center alignment */}
+        <View style={styles.headerPlaceholder} />
       </View>
 
       <ScrollView
@@ -71,144 +114,72 @@ export const HomeScreen: React.FC = () => {
           <RefreshControl
             refreshing={isRefreshing}
             onRefresh={refreshFeed}
-            colors={['#7e47eb']}
+            colors={['#8B7EF8']}
           />
         }
       >
-        {/* Banner CTA */}
+        {/* Upload an item CTA button */}
         <TouchableOpacity
-          activeOpacity={0.88}
-          onPress={() => navigation.navigate('Upload')}
-          style={styles.bannerCta}
+          activeOpacity={0.85}
+          onPress={() => navigation.navigate('UploadOutfit')}
+          style={styles.uploadCtaBox}
         >
-          <View style={styles.bannerIconBox}>
-            <Text style={styles.bannerIcon}>✨</Text>
-          </View>
-          <View style={styles.bannerTextBox}>
-            <Text style={styles.bannerTitle}>{t('home.uploadItemCta')}</Text>
-            <Text style={styles.bannerSubTitle}>Kombinini paylaş, AI ve topluluk puanlasın!</Text>
-          </View>
-          <Text style={styles.bannerArrow}>➔</Text>
+          <Svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <Path
+              d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"
+              stroke="#111827"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <Path
+              d="M12 9v6M9 12h6"
+              stroke="#111827"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </Svg>
+          <Text style={styles.uploadCtaText}>{t('home.uploadItemCta')}</Text>
         </TouchableOpacity>
 
-        {/* Category Pills */}
-        <Text style={styles.filterSectionTitle}>Kategori</Text>
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          style={styles.filterScrollView}
-          contentContainerStyle={styles.filterRow}
-        >
-          {categoryTabs.map((tab) => {
-            const isSelected = selectedCategory === tab.key;
-            return (
-              <TouchableOpacity
-                key={tab.key}
-                activeOpacity={0.75}
-                onPress={() => setCategoryFilter(tab.key)}
-                style={[
-                  styles.filterPill,
-                  isSelected ? styles.filterPillActive : styles.filterPillInactive,
-                ]}
-              >
-                <Text
-                  style={[
-                    styles.filterPillText,
-                    isSelected ? styles.filterPillTextActive : styles.filterPillTextInactive,
-                  ]}
-                >
-                  {tab.label}
-                </Text>
-              </TouchableOpacity>
-            );
-          })}
-        </ScrollView>
-
-        {/* Season Pills */}
-        <Text style={styles.filterSectionTitle}>Mevsim</Text>
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          style={styles.filterScrollView}
-          contentContainerStyle={styles.filterRow}
-        >
-          {seasonTabs.map((tab) => {
-            const isSelected = selectedSeason === tab.key;
-            return (
-              <TouchableOpacity
-                key={tab.key}
-                activeOpacity={0.75}
-                onPress={() => setSeasonFilter(tab.key)}
-                style={[
-                  styles.filterPill,
-                  isSelected ? styles.filterPillActive : styles.filterPillInactive,
-                ]}
-              >
-                <Text
-                  style={[
-                    styles.filterPillText,
-                    isSelected ? styles.filterPillTextActive : styles.filterPillTextInactive,
-                  ]}
-                >
-                  {tab.label}
-                </Text>
-              </TouchableOpacity>
-            );
-          })}
-        </ScrollView>
-
-        {/* Section Header */}
-        <View style={styles.sectionHeaderRow}>
-          <Text style={styles.sectionTitle}>{t('home.aiGeneratedLooks')}</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('Discover')}>
-            <Text style={styles.sectionMoreLink}>Tümü ➔</Text>
-          </TouchableOpacity>
-        </View>
-
-        {/* Cards Grid / Carousel */}
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.cardsRow}
-        >
+        {/* Following / Feed Posts */}
+        <View style={styles.feedSection}>
+          <Text style={styles.feedSectionTitle}>{t('home.followingFeed')}</Text>
           {feedItems.map((item) => (
-            <View key={item.id} style={styles.outfitCard}>
-              <View style={styles.imageContainer}>
-                <FotpuImage
-                  uri={item.mediaUrl || item.thumbnailUrl}
-                  style={styles.cardImage}
-                />
-                {/* Like Button */}
-                <TouchableOpacity
-                  activeOpacity={0.8}
-                  onPress={() => toggleLike(item.id)}
-                  style={styles.likeBadge}
-                >
-                  <Text style={styles.likeIcon}>{item.isLiked ? '❤️' : '🤍'}</Text>
-                </TouchableOpacity>
-
-                {/* Rating Badge */}
-                <View style={styles.ratingBadge}>
-                  <Text style={styles.ratingStar}>★</Text>
-                  <Text style={styles.ratingNumber}>
-                    {(item.averageRating || 8.5).toFixed(1)}
-                  </Text>
-                </View>
-              </View>
-
-              {/* Card Meta */}
-              <View style={styles.cardMeta}>
-                <Text numberOfLines={1} style={styles.cardDescription}>
-                  {item.description || t('home.trendyStyle')}
-                </Text>
-                <Text style={styles.cardVotes}>
-                  {item.totalVotes || 42} oylama
-                </Text>
-              </View>
-            </View>
+            <OutfitCard
+              key={item.id}
+              outfit={item}
+              onLikePress={toggleLike}
+              onSavePress={toggleSave}
+              onRatePress={handleOpenRating}
+              onCommentsPress={handleOpenComments}
+            />
           ))}
-        </ScrollView>
+        </View>
       </ScrollView>
+
+      {/* Comments Bottom Sheet */}
+      {activePost && (
+        <CommentsBottomSheet
+          visible={!!activeCommentsPostId}
+          comments={activePost.comments || []}
+          onClose={handleCloseComments}
+          onAddComment={handleAddComment}
+          onToggleCommentLike={handleToggleCommentLike}
+        />
+      )}
+
+      {/* Rating Modal */}
+      {activeRatingPost && (
+        <RatingModal
+          visible={!!activeRatingPost}
+          initialRating={activeRatingPost.userRating || 8.0}
+          currentAverage={activeRatingPost.averageRating}
+          onRateSubmit={handleRateSubmit}
+          onClose={handleCloseRating}
+        />
+      )}
     </SafeAreaView>
   );
 };
@@ -224,26 +195,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: '#F0F0F0',
     backgroundColor: '#FFFFFF',
   },
-  headerTitle: {
-    fontSize: 26,
-    fontWeight: '900',
-    color: '#181110',
-    letterSpacing: -0.5,
-  },
-  headerUploadBtn: {
-    width: 38,
-    height: 38,
-    borderRadius: 19,
-    backgroundColor: '#F5F3FF',
-    alignItems: 'center',
+  menuBtn: {
+    width: 40,
+    height: 40,
+    alignItems: 'flex-start',
     justifyContent: 'center',
   },
-  headerUploadIcon: {
-    fontSize: 16,
+  headerTitle: {
+    fontSize: 22,
+    fontWeight: '700',
+    color: '#111827',
+    letterSpacing: -0.3,
+  },
+  headerPlaceholder: {
+    width: 40,
   },
   scrollContainer: {
     flex: 1,
@@ -251,194 +218,66 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingHorizontal: 16,
-    paddingVertical: 16,
+    paddingTop: 12,
+    paddingBottom: 30,
   },
-  bannerCta: {
+  uploadCtaBox: {
+    height: 56,
+    backgroundColor: '#ECEAFE',
+    borderRadius: 16,
     flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#E6E6FA',
-    borderRadius: 20,
-    padding: 16,
-    marginBottom: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.06,
-    shadowRadius: 6,
-    elevation: 2,
-  },
-  bannerIconBox: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    backgroundColor: '#FFFFFF',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 12,
+    gap: 10,
+    marginBottom: 16,
   },
-  bannerIcon: {
-    fontSize: 22,
-  },
-  bannerTextBox: {
-    flex: 1,
-  },
-  bannerTitle: {
+  uploadCtaText: {
     fontSize: 16,
-    fontWeight: '800',
-    color: '#181110',
-    marginBottom: 2,
-  },
-  bannerSubTitle: {
-    fontSize: 12,
-    color: '#555555',
-  },
-  bannerArrow: {
-    fontSize: 18,
-    color: '#7e47eb',
-    fontWeight: 'bold',
-    marginLeft: 8,
-  },
-  filterSectionTitle: {
-    fontSize: 13,
     fontWeight: '700',
-    color: '#888888',
-    textTransform: 'uppercase',
-    letterSpacing: 0.5,
-    marginBottom: 8,
-    marginTop: 4,
+    color: '#111827',
   },
-  filterScrollView: {
-    marginBottom: 12,
-  },
-  filterRow: {
+  pillsRow: {
     flexDirection: 'row',
-    gap: 8,
+    gap: 10,
+    marginBottom: 10,
+  },
+  pillsScrollRow: {
+    flexDirection: 'row',
+    gap: 10,
+    paddingBottom: 4,
+    marginBottom: 16,
   },
   filterPill: {
-    height: 38,
-    paddingHorizontal: 18,
-    borderRadius: 9999,
+    height: 40,
+    paddingHorizontal: 20,
+    borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 8,
   },
   filterPillActive: {
-    backgroundColor: '#7e47eb',
-    shadowColor: '#7e47eb',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 2,
+    backgroundColor: '#ECEAFE',
   },
   filterPillInactive: {
-    backgroundColor: '#FFFFFF',
-    borderWidth: 1,
-    borderColor: '#E8E8E8',
+    backgroundColor: '#ECEEF2',
   },
   filterPillText: {
     fontSize: 14,
     fontWeight: '600',
   },
   filterPillTextActive: {
-    color: '#FFFFFF',
-    fontWeight: '700',
+    color: '#111827',
   },
   filterPillTextInactive: {
-    color: '#444444',
+    color: '#1F2937',
   },
-  sectionHeaderRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginTop: 16,
-    marginBottom: 12,
+  feedSection: {
+    marginTop: 6,
   },
-  sectionTitle: {
-    fontSize: 20,
+  feedSectionTitle: {
+    fontSize: 18,
     fontWeight: '800',
-    color: '#181110',
-  },
-  sectionMoreLink: {
-    fontSize: 14,
-    fontWeight: '700',
-    color: '#7e47eb',
-  },
-  cardsRow: {
-    paddingBottom: 24,
-    gap: 16,
-  },
-  outfitCard: {
-    width: 200,
-    marginRight: 14,
-  },
-  imageContainer: {
-    width: '100%',
-    height: 260,
-    borderRadius: 20,
-    overflow: 'hidden',
-    backgroundColor: '#EAEAEA',
-    position: 'relative',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 3,
-  },
-  cardImage: {
-    width: '100%',
-    height: '100%',
-  },
-  likeBadge: {
-    position: 'absolute',
-    top: 10,
-    right: 10,
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: 'rgba(255, 255, 255, 0.85)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.15,
-    shadowRadius: 3,
-    elevation: 2,
-  },
-  likeIcon: {
-    fontSize: 16,
-  },
-  ratingBadge: {
-    position: 'absolute',
-    bottom: 10,
-    left: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.65)',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 12,
-  },
-  ratingStar: {
-    fontSize: 12,
-    color: '#FBBF24',
-    marginRight: 4,
-  },
-  ratingNumber: {
-    fontSize: 12,
-    fontWeight: 'bold',
-    color: '#FFFFFF',
-  },
-  cardMeta: {
-    paddingTop: 8,
-    paddingHorizontal: 2,
-  },
-  cardDescription: {
-    fontSize: 14,
-    fontWeight: '700',
-    color: '#222222',
-    marginBottom: 2,
-  },
-  cardVotes: {
-    fontSize: 12,
-    color: '#888888',
+    color: '#111827',
+    marginBottom: 14,
+    marginLeft: 4,
   },
 });

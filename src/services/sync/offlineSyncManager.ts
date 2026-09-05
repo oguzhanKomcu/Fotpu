@@ -80,10 +80,10 @@ class OfflineSyncManager {
         console.log(`[OfflineSyncManager] Task ${task.id} (${task.type}) synchronized successfully.`);
       } catch (error: any) {
         console.warn(`[OfflineSyncManager] Failed to sync task ${task.id}:`, error.message);
-        if (task.retryCount < 3) {
+        if (task.retryCount < 2) {
           remainingTasks.push({ ...task, retryCount: task.retryCount + 1 });
         } else {
-          console.error(`[OfflineSyncManager] Task ${task.id} exceeded max retries. Dropping.`);
+          console.warn(`[OfflineSyncManager] Task ${task.id} exceeded max retries. Dropping.`);
         }
       }
     }

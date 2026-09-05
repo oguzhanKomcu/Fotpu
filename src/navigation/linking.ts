@@ -20,6 +20,8 @@ export const linking: LinkingOptions<RootStackParamList> = {
       App: {
         screens: {
           Home: 'home',
+          Wardrobe: 'wardrobe',
+          Saved: 'saved',
           Discover: 'discover',
           Upload: 'upload',
           Messages: 'messages',
@@ -32,6 +34,7 @@ export const linking: LinkingOptions<RootStackParamList> = {
           },
         },
       },
+      UploadOutfit: 'upload-outfit',
       OutfitDetail: 'outfit/:outfitId',
       CommentsModal: 'outfit/:outfitId/comments',
     },

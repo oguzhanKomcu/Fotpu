@@ -6,9 +6,9 @@ import {
   ScrollView,
   Alert,
   StyleSheet,
-  SafeAreaView,
   StatusBar,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { AuthStackParamList } from '@/types/navigation';
@@ -115,7 +115,7 @@ export const RegisterScreen: React.FC<Props> = ({ navigation }) => {
       style={styles.gradientContainer}
     >
       <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
-      <SafeAreaView style={styles.safeArea}>
+      <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
         <ScrollView
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}

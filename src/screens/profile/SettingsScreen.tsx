@@ -8,9 +8,9 @@ import {
   Alert,
   Modal,
   StyleSheet,
-  SafeAreaView,
   StatusBar,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuthStore } from '@/store/authStore';
 import { useTranslation } from '@/store/languageStore';
 import { useNavigation } from '@react-navigation/native';
@@ -40,7 +40,7 @@ export const SettingsScreen: React.FC = () => {
   const activeLangInfo = supportedLanguages.find((l) => l.code === currentLanguage);
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
       <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
       {/* Header */}
       <View style={styles.header}>

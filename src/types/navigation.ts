@@ -17,15 +17,19 @@ export type ProfileStackParamList = {
 
 export type AppTabParamList = {
   Home: undefined;
-  Discover: undefined;
-  Upload: undefined;
-  Messages: undefined;
+  Wardrobe: undefined;
+  Saved: undefined;
   Profile: NavigatorScreenParams<ProfileStackParamList> | undefined;
+  Discover?: undefined;
+  Upload?: undefined;
+  Messages?: undefined;
 };
 
 export type RootStackParamList = {
   Auth: NavigatorScreenParams<AuthStackParamList>;
   App: NavigatorScreenParams<AppTabParamList>;
+  Discover: undefined;
+  UploadOutfit: undefined;
   OutfitDetail: { outfitId: string; initialOutfit?: Outfit };
   CommentsModal: { outfitId: string };
 };

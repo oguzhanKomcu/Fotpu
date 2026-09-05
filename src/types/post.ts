@@ -13,6 +13,9 @@ export interface PostDto {
   createdAt: string;
 
   // Local/Optimistic UI Enhancements
+  title?: string | null;
+  category?: string | null;
+  season?: string | null;
   username?: string;
   userAvatarUrl?: string | null;
   isSaved?: boolean;

@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/types/navigation';
 import { AuthNavigator } from './AuthNavigator';
 import { AppTabsNavigator } from './AppTabsNavigator';
+import { UploadOutfitScreen } from '@/screens/upload/UploadOutfitScreen';
+import { DiscoverScreen } from '@/screens/discover/DiscoverScreen';
 import { useAuthStore } from '@/store/authStore';
 import { linking } from './linking';
 
@@ -18,7 +20,19 @@ export const RootNavigator: React.FC = () => {
         {!isAuthenticated ? (
           <Stack.Screen name="Auth" component={AuthNavigator} />
         ) : (
-          <Stack.Screen name="App" component={AppTabsNavigator} />
+          <>
+            <Stack.Screen name="App" component={AppTabsNavigator} />
+            <Stack.Screen
+              name="Discover"
+              component={DiscoverScreen}
+              options={{ animation: 'slide_from_right' }}
+            />
+            <Stack.Screen
+              name="UploadOutfit"
+              component={UploadOutfitScreen}
+              options={{ animation: 'slide_from_bottom', presentation: 'card' }}
+            />
+          </>
         )}
       </Stack.Navigator>
     </NavigationContainer>
